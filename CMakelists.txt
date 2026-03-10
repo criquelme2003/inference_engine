@@ -15,6 +15,7 @@ set(CMAKE_CUDA_COMPILER /usr/local/cuda-12.5/bin/nvcc)
 
 find_package(CUDAToolkit REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
+find_package(Protobuf REQUIRED)
 
 set(Python_EXECUTABLE /usr/bin/python3)
 
@@ -29,6 +30,10 @@ file(GLOB_RECURSE KERNEL_SOURCES "src/kernels/*.cu")
 file(GLOB_RECURSE CORE_SOURCES "src/core/*.cpp")
 file(GLOB_RECURSE OPERATOR_SOURCES "src/operators/*.cu")
 file(GLOB_RECURSE PARSER_SOURCES "src/parser/*.cpp")
+file(GLOB ONNX_PROTO_SOURCES
+    "/workspace/extern/onnx/build/onnx/*.pb.cc"
+)
+
 
 # ===== Ejecutable =====
 
@@ -40,16 +45,21 @@ add_executable(fecuda_main
   ${CORE_SOURCES}
   ${OPERATOR_SOURCES}
   ${PARSER_SOURCES}
+  ${ONNX_PROTO_SOURCES}
 )
 
 target_include_directories(fecuda_main
-  PRIVATE include
+  PRIVATE 
+  include
   /workspace/extern/dlpack/include
+  ${PROTOBUF_INCLUDE_DIRS}
+  /workspace/extern/onnx/build
 )
 
 target_link_libraries(fecuda_main
   CUDA::curand
   Python::Python
+  ${PROTOBUF_LIBRARIES}
 )
 
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
@@ -74,6 +84,7 @@ pybind11_add_module(forgethreads
   ${CORE_SOURCES}
   ${OPERATOR_SOURCES}
   ${PARSER_SOURCES}
+  ${ONNX_PROTO_SOURCES}
 )
 
 set_target_properties(forgethreads PROPERTIES
@@ -83,10 +94,13 @@ set_target_properties(forgethreads PROPERTIES
 target_include_directories(forgethreads
   PRIVATE include
   /workspace/extern/dlpack/include
+  ${PROTOBUF_INCLUDE_DIRS}
+  /workspace/extern/onnx/build
 )
 
 target_link_libraries(forgethreads
   PRIVATE
   CUDA::curand
   Python::Python
+  ${PROTOBUF_LIBRARIES}
 )

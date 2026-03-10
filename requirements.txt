@@ -1,2 +1,4 @@
 numpy
 tensorflow==2.20.0
+onnx
+tf2onnx

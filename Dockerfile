@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     python3-pybind11 \
     pybind11-dev \
+    libprotobuf-dev \
+    protobuf-compiler
     && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /workspace
@@ -23,3 +25,4 @@ COPY . .
 
 RUN mkdir extern && cd extern && git clone --depth 1 https://github.com/dmlc/dlpack.git
 
+RUN git clone https://github.com/onnx/onnx.git && cd onnx && git submodule update --init --recursive && mkdir build && cd build && cmake .. && make
