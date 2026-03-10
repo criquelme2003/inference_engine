@@ -6,7 +6,7 @@ int main() {
 
     onnx::ModelProto model;
 
-    std::ifstream input("model.onnx", std::ios::binary);
+    std::ifstream input("/workspace/models/model.onnx", std::ios::binary);
 
     if (!model.ParseFromIstream(&input)) {
         std::cout << "Error loading ONNX\n";
