@@ -21,5 +21,5 @@ RUN python3 -m pip install --upgrade pip && \
 COPY . .
 
 
-# RUN mkdir extern && cd extern && git clone --depth 1 https://github.com/dmlc/dlpack.git
+RUN mkdir extern && cd extern && git clone --depth 1 https://github.com/dmlc/dlpack.git
 
