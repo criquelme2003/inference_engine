@@ -13,7 +13,8 @@ int main() {
         return 1;
     }
 
-    std::cout << "Nodes: " << model.graph().node_size() << std::endl;
+    std::cout << "Producer_name " << model.producer_name() << std::endl;
+    std::cout << "Producer_version: " << model.producer_version() << std::endl;
 
     return 0;
 }
