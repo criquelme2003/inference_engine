@@ -1,19 +1,16 @@
 #pragma once
 
-#include <vector>
 #include "types.hpp"
+#include <vector>
 
-class Tensor{
-  public:
-    *void data;
-    DataType dataType;
-    std::vector<int> dims;
-    DeviceType device;
-    size_t total_size;
+class Tensor {
+public:
+  void *data;
+  std::vector<int> dims;
+  std::size_t total_size;
+  DeviceType device;
+  DataType dataType;
 
-    virtual Tensor(*void &data,
-      std::vector<int> &dims,
-      size_t total_size;){}
-      DataType dataType,
-      DeviceType device,
-}
+  Tensor(void *data, std::vector<int> &dims, std::size_t total_size,
+         DataType dataType, DeviceType device);
+};

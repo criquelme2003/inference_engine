@@ -1,3 +1,10 @@
 {
-  "editor.defaultFormatter": "ms-vscode.cpptools"
+  "editor.defaultFormatter": "ms-vscode.cpptools",
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "clangd.arguments": [
+    "--compile-commands-dir=/workspace/build"
+  ]
 }

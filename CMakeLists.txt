@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-set(EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(FeCUDA LANGUAGES CXX CUDA)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -50,7 +50,8 @@ add_executable(fecuda_main
 
 target_include_directories(fecuda_main
   PRIVATE 
-  include
+  ${CMAKE_SOURCE_DIR}/include/engine
+  ${CMAKE_SOURCE_DIR}/include
   /workspace/extern/dlpack/include
   ${PROTOBUF_INCLUDE_DIRS}
   /workspace/extern/onnx/build
@@ -92,7 +93,9 @@ set_target_properties(forgethreads PROPERTIES
 )
 
 target_include_directories(forgethreads
-  PRIVATE include
+  PRIVATE 
+  ${CMAKE_SOURCE_DIR}/include/engine
+  ${CMAKE_SOURCE_DIR}/include
   /workspace/extern/dlpack/include
   ${PROTOBUF_INCLUDE_DIRS}
   /workspace/extern/onnx/build
