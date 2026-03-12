@@ -12,7 +12,6 @@ public:
 
   Node(std::vector<std::string> _inputs, std::vector<std::string> _outputs,
        OperationType _operation) {
-    // TODO: COMPROBAR EXISTENCIA DE INPUTS Y OUTPUTS EN GRAPH->REGISTRY (BUSCAR PATRON DE DISEÑO PARA HACERLO)
     
     inputs = _inputs;
     outputs = _outputs;

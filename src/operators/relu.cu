@@ -1,23 +1,17 @@
 
-#include "operation.hpp"
+#include "operators.hpp"
 #include "tensor.hpp"
 #include <string>
 #include <vector>
 
-class Relu : public Operation {
-private:
-  std::string input, output;
+void Relu::execute(std::vector<std::string> inputs,
+                   std::vector<std::string> outputs) {
 
-public:
-  using Operation::Operation; // CONSTRUCTOR
-  void execute(std::vector<std::string> inputs,
-               std::vector<std::string> outputs) {
+  input = inputs[0];
+  output = outputs[0];
 
-    input = inputs[0];
-    output = outputs[0];
+  Tensor tInput1 = tensorRepository.at(input);
+  Tensor tOutput = tensorRepository.at(output);
 
-    Tensor tInput1 = tensorRepository[input];
-    Tensor tOutput = tensorRepository[output];
-    return;
-  }
+  return;
 };

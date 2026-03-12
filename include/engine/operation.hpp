@@ -7,7 +7,7 @@
 class Operation {
 public:
   std::unordered_map<std::string, Tensor> tensorRepository;
-  Operation(std::unordered_map<std::string, int> &tensorRepository)
+  Operation(std::unordered_map<std::string, Tensor> &tensorRepository)
       : tensorRepository(tensorRepository) {
 
         };
