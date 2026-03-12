@@ -23,10 +23,7 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development)
 
 # ===== Sources =====
 
-file(GLOB ALGORITHM_SOURCES "src/algorithms/*.cu")
-file(GLOB UTILS_SOURCES "src/utils/*.cu")
 file(GLOB_RECURSE KERNEL_SOURCES "src/kernels/*.cu")
-
 file(GLOB_RECURSE CORE_SOURCES "src/core/*.cpp")
 file(GLOB_RECURSE OPERATOR_SOURCES "src/operators/*.cu")
 file(GLOB_RECURSE PARSER_SOURCES "src/parser/*.cpp")
@@ -39,8 +36,6 @@ file(GLOB ONNX_PROTO_SOURCES
 
 add_executable(fecuda_main
   src/main.cu
-  ${ALGORITHM_SOURCES}
-  ${UTILS_SOURCES}
   ${KERNEL_SOURCES}
   ${CORE_SOURCES}
   ${OPERATOR_SOURCES}
@@ -79,8 +74,6 @@ target_compile_options(fecuda_main
 
 pybind11_add_module(forgethreads
   src/bindings.cu
-  ${ALGORITHM_SOURCES}
-  ${UTILS_SOURCES}
   ${KERNEL_SOURCES}
   ${CORE_SOURCES}
   ${OPERATOR_SOURCES}
